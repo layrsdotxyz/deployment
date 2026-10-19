@@ -1,0 +1,47 @@
+{
+  "contractName": "LayrsTeeReceiptRegistry",
+  "sourcePath": "src/proofs/LayrsTeeReceiptRegistry.sol",
+  "compilerVersion": "v0.8.25+commit.b61c2a91",
+  "settings": {
+    "evmVersion": "paris",
+    "libraries": {},
+    "metadata": {
+      "appendCBOR": true,
+      "bytecodeHash": "ipfs",
+      "useLiteralContent": false
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "": [
+          "*"
+        ],
+        "*": [
+          "*"
+        ]
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+      "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+      "erc4626-tests/=lib/openzeppelin-contracts-upgradeable/lib/erc4626-tests/",
+      "forge-std/=lib/forge-std/src/",
+      "halmos-cheatcodes/=lib/openzeppelin-contracts-upgradeable/lib/halmos-cheatcodes/src/",
+      "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+      "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+    ],
+    "viaIR": false
+  },
+  "sources": {
+    "src/proofs/LayrsTeeReceiptRegistry.sol": "b3995940f679780bfe61f902fd4a1057f9c53a619ca9c66342ec7e34b5dfe08b",
+    "lib/openzeppelin-contracts/contracts/access/AccessControl.sol": "2a6209420909ff3f892bd461db4e96c98937f0a78987c3b6c5b24990830d034d",
+    "lib/openzeppelin-contracts/contracts/access/IAccessControl.sol": "e3c0885d437bb495ca88d12a04cadaa89db7288f4f0400f728a7634025a24536",
+    "lib/openzeppelin-contracts/contracts/utils/Context.sol": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+    "lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol": "7fdc4dc9e3872f6a4c1ec9cfa9583a1fc18ccd7a416397a6e698bd5bbf92f32b",
+    "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol": "7c5c3f98ab876991e7dd34b84d41137e836306eb9f36f6386a631f5be3f5d6d4"
+  },
+  "explorerSourceUrl": "https://explorer.horizen.io/api/v2/smart-contracts/0x3f1d32cd64ab362a7b4390e63229b2a7b8ec6a96"
+}

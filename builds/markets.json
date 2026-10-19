@@ -1,0 +1,57 @@
+{
+  "contractName": "MarketRegistry",
+  "sourcePath": "src/core/MarketRegistry.sol",
+  "compilerVersion": "v0.8.25+commit.b61c2a91",
+  "settings": {
+    "evmVersion": "paris",
+    "libraries": {},
+    "metadata": {
+      "appendCBOR": true,
+      "bytecodeHash": "ipfs",
+      "useLiteralContent": false
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "": [
+          "*"
+        ],
+        "*": [
+          "*"
+        ]
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+      "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+      "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+      "forge-std/=lib/forge-std/src/",
+      "halmos-cheatcodes/=lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/",
+      "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/",
+      "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+    ],
+    "viaIR": true
+  },
+  "sources": {
+    "src/core/MarketRegistry.sol": "5fbcf278b51d698b1aead48d589eaa9e5d8f275507ea53551612f7c014cd32bd",
+    "lib/openzeppelin-contracts-upgradeable/contracts/access/AccessControlUpgradeable.sol": "f50748ad56bbe7f2d6ced717731ee684118a7e1a0dfd6458bc2efce0d28b0980",
+    "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/Initializable.sol": "f527a063813c2bf60c153fb08e38539578935402894fcc36fac42324ca325d3b",
+    "lib/openzeppelin-contracts-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol": "2d07bcf9728190a5c807cf68defc3f3c52aa098d04770d44af37f30abade38d5",
+    "lib/openzeppelin-contracts-upgradeable/contracts/utils/ContextUpgradeable.sol": "a08e16324da33a9d666dc07a22ae58031c242a3869f6808e55b4b82fc70cb209",
+    "lib/openzeppelin-contracts-upgradeable/contracts/utils/introspection/ERC165Upgradeable.sol": "586f77f25f65f2b957d5579c346d39cc883848962a375857c151c5bb15c0eb93",
+    "lib/openzeppelin-contracts/contracts/access/IAccessControl.sol": "e3c0885d437bb495ca88d12a04cadaa89db7288f4f0400f728a7634025a24536",
+    "lib/openzeppelin-contracts/contracts/interfaces/IERC1967.sol": "886b093d8f7c41f73af42b8e183314b3654531a9d5e11f07c41a5a7f11d3e006",
+    "lib/openzeppelin-contracts/contracts/interfaces/draft-IERC1822.sol": "71190a8ee26dab908d3dad703ccfff09ebfc5850f2f405463e21df21a8643bbc",
+    "lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Utils.sol": "454cf052a9513cdfd7cf2e3227f3ef1a2e3a2cfd9ea4706814f602dbe4f19d8f",
+    "lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol": "422eabc0e645e24c3a52898f6255b349323b013544a3ebdc4b2d3f7fc5bb7e9e",
+    "lib/openzeppelin-contracts/contracts/utils/Address.sol": "2395099726e6c215641a5857a74f663987f37a3ad8a2932a9f3d8ee27fb11dd4",
+    "lib/openzeppelin-contracts/contracts/utils/Errors.sol": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+    "lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol": "75704538dcb223239280c6726d9a31cf769a7816718517c997fc7d63bdb70778",
+    "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol": "7c5c3f98ab876991e7dd34b84d41137e836306eb9f36f6386a631f5be3f5d6d4",
+    "src/interfaces/IOracleConfigValidator.sol": "0cf7affbaf093ec534d7eb7691a363a5e7a1a96afd26c817ac2e5958f6254018"
+  },
+  "explorerSourceUrl": "https://explorer.horizen.io/api/v2/smart-contracts/0xfccd0129d8c9a283ed2b7381179381b38b06e71b"
+}
