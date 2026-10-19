@@ -2,10 +2,10 @@
   "chainId": 26514,
   "network": "Horizen Mainnet",
   "gasToken": "ETH",
-  "verifiedAtUtc": "2026-10-19T21:34:22.690497+00:00",
-  "checkedBlock": 29048379,
-  "checkedBlockHash": "0x81b606bbaa182aa5562e3498fa3579c13d1d2a15b000a568fb707d75effd10a2",
-  "scope": "Current USDC custody, private-fill publication, traded-market registration/outcomes and their administrators. No Base, historical replacements, inactive yield contracts or application backend.",
+  "verifiedAtUtc": "2026-10-19T21:43:53.712689+00:00",
+  "checkedBlock": 29048950,
+  "checkedBlockHash": "0x4ab64a18654204c5d08498815a4ae74e94ed55e94c63a95c78c572c41e6eb6c4",
+  "scope": "Current USDC trading and proof contracts, plus latest recorded ZEN custody, vault, staking, strategy and settlement deployments. Current configuration and active use are distinguished; deployment does not establish funded end-to-end operation. No Base source, superseded replacement implementations or application backend.",
   "contracts": [
     {
       "id": "usdc-pool",
@@ -121,6 +121,269 @@
       "implementationDeploymentTransaction": "0x15ffb3e54a291f4ab3af16544e00ee118bf7f1aaf891e615e2cc07d9669e1935",
       "implementationDeploymentExplorer": "https://explorer.horizen.io/tx/0x15ffb3e54a291f4ab3af16544e00ee118bf7f1aaf891e615e2cc07d9669e1935",
       "proxyBuild": "builds/pool-admin-proxy.json"
+    },
+    {
+      "id": "zen-pool",
+      "name": "LayrsPool",
+      "purpose": "ZEN-denominated prediction-market trading collateral, separate from the staking vault",
+      "address": "0x4b31ad17e964cb6da440b28405ab110eaf7b52a0",
+      "implementation": "0x377401e018ee48dc8d8ea3df67b04290173b5efe",
+      "explorer": "https://explorer.horizen.io/address/0x4b31ad17e964cb6da440b28405ab110eaf7b52a0",
+      "deploymentTransaction": "0xd2641805bb7ab5f8dc30489a8f90083ec1338f6a6636dab4f793164932a907cc",
+      "deploymentExplorer": "https://explorer.horizen.io/tx/0xd2641805bb7ab5f8dc30489a8f90083ec1338f6a6636dab4f793164932a907cc",
+      "deploymentBlock": 24353092,
+      "source": "src/LayrsPool.sol",
+      "build": "builds/zen-pool.json",
+      "explorerVerifiedSource": true,
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "3bbbe0a9a60c4aa97b078b5c37a18bb34ced150a8d32fb045bdb5cf8930e41ec",
+      "implementationExplorer": "https://explorer.horizen.io/address/0x377401e018ee48dc8d8ea3df67b04290173b5efe",
+      "implementationDeploymentTransaction": "0x2e8f05eb9548e1ac5130c844cb96b85a62eb69223b4e546575a1fe61ff4cf9f8",
+      "implementationDeploymentExplorer": "https://explorer.horizen.io/tx/0x2e8f05eb9548e1ac5130c844cb96b85a62eb69223b4e546575a1fe61ff4cf9f8",
+      "proxyBuild": "builds/zen-pool-proxy.json",
+      "configurationChecks": [
+        {
+          "address": "0x4b31ad17e964cb6da440b28405ab110eaf7b52a0",
+          "function": "asset()",
+          "calldata": "0x38d52e0f",
+          "rawResult": "0x00000000000000000000000057da2d504bf8b83ef304759d9f2648522d7a9280",
+          "value": "0x57da2d504bf8b83ef304759d9f2648522d7a9280"
+        },
+        {
+          "address": "0x4b31ad17e964cb6da440b28405ab110eaf7b52a0",
+          "function": "paused()",
+          "calldata": "0x5c975abb",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": false
+        },
+        {
+          "address": "0x4b31ad17e964cb6da440b28405ab110eaf7b52a0",
+          "function": "yieldAdapterCount()",
+          "calldata": "0x7e2237c2",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": 0
+        }
+      ],
+      "usageStatus": "ZEN-denominated prediction-market collateral; referenced by production. Staking-adapter registration is not a requirement or test of trading availability."
+    },
+    {
+      "id": "zen-vault",
+      "name": "LPVault",
+      "purpose": "ZEN ERC-4626 liquidity/yield vault, separate from prediction-market collateral",
+      "address": "0xa5fffcc49326d0e4a99b2d076a5ce6f256a98a87",
+      "implementation": "0x2ac6caf1d03a77e68d39fb664453978d0c72b3c6",
+      "explorer": "https://explorer.horizen.io/address/0xa5fffcc49326d0e4a99b2d076a5ce6f256a98a87",
+      "deploymentTransaction": "0x62a27d89adf1e6ca7a26456105b4d1507d4945fee96b968bcf97a106d282160d",
+      "deploymentExplorer": "https://explorer.horizen.io/tx/0x62a27d89adf1e6ca7a26456105b4d1507d4945fee96b968bcf97a106d282160d",
+      "deploymentBlock": 24353096,
+      "source": "src/vault/LPVault.sol",
+      "build": "builds/zen-vault.json",
+      "explorerVerifiedSource": true,
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "2db374555cedddb6d4d7352fc107872836dace72416d4ff4e0f23aa49bb124fd",
+      "implementationExplorer": "https://explorer.horizen.io/address/0x2ac6caf1d03a77e68d39fb664453978d0c72b3c6",
+      "implementationDeploymentTransaction": "0x11716c9920d4e5af1f8be2bc704e20e076fa734a12a13df934bee5f0436f1964",
+      "implementationDeploymentExplorer": "https://explorer.horizen.io/tx/0x11716c9920d4e5af1f8be2bc704e20e076fa734a12a13df934bee5f0436f1964",
+      "proxyBuild": "builds/zen-vault-proxy.json",
+      "configurationChecks": [
+        {
+          "address": "0xa5fffcc49326d0e4a99b2d076a5ce6f256a98a87",
+          "function": "asset()",
+          "calldata": "0x38d52e0f",
+          "rawResult": "0x00000000000000000000000057da2d504bf8b83ef304759d9f2648522d7a9280",
+          "value": "0x57da2d504bf8b83ef304759d9f2648522d7a9280"
+        },
+        {
+          "address": "0xa5fffcc49326d0e4a99b2d076a5ce6f256a98a87",
+          "function": "totalSupply()",
+          "calldata": "0x18160ddd",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": 0
+        },
+        {
+          "address": "0xa5fffcc49326d0e4a99b2d076a5ce6f256a98a87",
+          "function": "totalDeployedToYield()",
+          "calldata": "0x936b806c",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": 0
+        }
+      ],
+      "usageStatus": "ZEN ERC-4626 liquidity/yield vault, separate from ZEN prediction-market collateral. Indexed by production; configuration checked."
+    },
+    {
+      "id": "zen-staker",
+      "name": "ZenStakerAdapter",
+      "purpose": "ZEN staking adapter registered with the earlier ZEN vault",
+      "address": "0x3d1c5104908bba3918ad53fad4d1da13fee25e2d",
+      "implementation": null,
+      "explorer": "https://explorer.horizen.io/address/0x3d1c5104908bba3918ad53fad4d1da13fee25e2d",
+      "deploymentTransaction": "0x44ee7d1a192c70e0ad76e989eefa9599ee41a8715f7e3897126c2eaa120768c7",
+      "deploymentExplorer": "https://explorer.horizen.io/tx/0x44ee7d1a192c70e0ad76e989eefa9599ee41a8715f7e3897126c2eaa120768c7",
+      "deploymentBlock": 21626642,
+      "source": "src/adapters/ZenStakerAdapter.sol",
+      "build": "builds/zen-staker.json",
+      "explorerVerifiedSource": true,
+      "runtimeSha256": "c1d232e6a87c7af1b2e7c90b587c23284c9e0ae18211b75441228d2033092eaf",
+      "configurationChecks": [
+        {
+          "address": "0x3d1c5104908bba3918ad53fad4d1da13fee25e2d",
+          "function": "pool()",
+          "calldata": "0x16f0115b",
+          "rawResult": "0x000000000000000000000000a4bf62c6cae3d3533d65b2d04e62cb6e757d57a7",
+          "value": "0xa4bf62c6cae3d3533d65b2d04e62cb6e757d57a7"
+        },
+        {
+          "address": "0x3d1c5104908bba3918ad53fad4d1da13fee25e2d",
+          "function": "owner()",
+          "calldata": "0x8da5cb5b",
+          "rawResult": "0x000000000000000000000000a4bf62c6cae3d3533d65b2d04e62cb6e757d57a7",
+          "value": "0xa4bf62c6cae3d3533d65b2d04e62cb6e757d57a7"
+        },
+        {
+          "address": "0x3d1c5104908bba3918ad53fad4d1da13fee25e2d",
+          "function": "zenStaker()",
+          "calldata": "0x404868f7",
+          "rawResult": "0x0000000000000000000000006bf7cf29a8bce11aa62cf593d165c244fa4d3e31",
+          "value": "0x6bf7cf29a8bce11aa62cf593d165c244fa4d3e31"
+        },
+        {
+          "address": "0x3d1c5104908bba3918ad53fad4d1da13fee25e2d",
+          "function": "depositCreated()",
+          "calldata": "0xdaef3ca7",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "value": true
+        },
+        {
+          "address": "0x3d1c5104908bba3918ad53fad4d1da13fee25e2d",
+          "function": "accountedStaked()",
+          "calldata": "0x3feff6b9",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": 0
+        }
+      ],
+      "usageStatus": "Registered with the earlier ZEN vault, not with the latest ZEN pool/vault. Existing staking deposit flag confirmed; not proof of current funded activity."
+    },
+    {
+      "id": "zen-receiver",
+      "name": "HorizenZenStrategyReceiver",
+      "purpose": "Horizen receiver for the cross-chain ZEN strategy",
+      "address": "0xd1a230267836eb3d6bf643c7c58457511e783ca9",
+      "implementation": null,
+      "explorer": "https://explorer.horizen.io/address/0xd1a230267836eb3d6bf643c7c58457511e783ca9",
+      "deploymentTransaction": "0x5e8fa0c7848c9becfd3f519ae2d4df7cda23c9a5920c13b5fc551822dc67f5fd",
+      "deploymentExplorer": "https://explorer.horizen.io/tx/0x5e8fa0c7848c9becfd3f519ae2d4df7cda23c9a5920c13b5fc551822dc67f5fd",
+      "deploymentBlock": 21701220,
+      "source": "src/strategies/HorizenZenStrategyReceiver.sol",
+      "build": "builds/zen-receiver.json",
+      "explorerVerifiedSource": true,
+      "runtimeSha256": "4d51b1d22d3c37b0d7ea750067feb41ef1c0d6eb0cc3b69dc3c204292d932171",
+      "configurationChecks": [
+        {
+          "address": "0xd1a230267836eb3d6bf643c7c58457511e783ca9",
+          "function": "baseStrategyManager()",
+          "calldata": "0x75718169",
+          "rawResult": "0x000000000000000000000000bdce337c323a5b1ab346a34348e0781f549f82bf",
+          "value": "0xbdce337c323a5b1ab346a34348e0781f549f82bf"
+        },
+        {
+          "address": "0xd1a230267836eb3d6bf643c7c58457511e783ca9",
+          "function": "lastRemoteAccountingAt()",
+          "calldata": "0x99abcf5f",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": 0
+        }
+      ],
+      "usageStatus": "Deployed; current Base strategy-manager reference verified. Cross-chain end-to-end operation is not certified here."
+    },
+    {
+      "id": "zen-fee-adapter",
+      "name": "ZenStakerFeeAdapter",
+      "purpose": "Fee-aware ZEN staking adapter owned by the strategy receiver",
+      "address": "0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3",
+      "implementation": null,
+      "explorer": "https://explorer.horizen.io/address/0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3",
+      "deploymentTransaction": "0x56e6bc6f3944c950f39df3fa53bfb9d6e2264ce1842ee75d18091ad552510108",
+      "deploymentExplorer": "https://explorer.horizen.io/tx/0x56e6bc6f3944c950f39df3fa53bfb9d6e2264ce1842ee75d18091ad552510108",
+      "deploymentBlock": 21701220,
+      "source": "src/adapters/ZenStakerFeeAdapter.sol",
+      "build": "builds/zen-fee-adapter.json",
+      "explorerVerifiedSource": true,
+      "runtimeSha256": "f1761f017dd2d6ca223a76acd2ce567bde4b93b223bc43042df1c91da29cb0ea",
+      "configurationChecks": [
+        {
+          "address": "0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3",
+          "function": "pool()",
+          "calldata": "0x16f0115b",
+          "rawResult": "0x000000000000000000000000d1a230267836eb3d6bf643c7c58457511e783ca9",
+          "value": "0xd1a230267836eb3d6bf643c7c58457511e783ca9"
+        },
+        {
+          "address": "0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3",
+          "function": "owner()",
+          "calldata": "0x8da5cb5b",
+          "rawResult": "0x000000000000000000000000d1a230267836eb3d6bf643c7c58457511e783ca9",
+          "value": "0xd1a230267836eb3d6bf643c7c58457511e783ca9"
+        },
+        {
+          "address": "0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3",
+          "function": "zenStaker()",
+          "calldata": "0x404868f7",
+          "rawResult": "0x0000000000000000000000006bf7cf29a8bce11aa62cf593d165c244fa4d3e31",
+          "value": "0x6bf7cf29a8bce11aa62cf593d165c244fa4d3e31"
+        },
+        {
+          "address": "0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3",
+          "function": "depositCreated()",
+          "calldata": "0xdaef3ca7",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "value": true
+        },
+        {
+          "address": "0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3",
+          "function": "accountedStaked()",
+          "calldata": "0x3feff6b9",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": 0
+        }
+      ],
+      "usageStatus": "Deployed and bound to the strategy receiver; existing staking deposit flag confirmed. Cross-chain end-to-end operation is not certified here."
+    },
+    {
+      "id": "match-settlement",
+      "name": "MatchSettlement",
+      "purpose": "Latest recorded settlement contract; indexed, not the private-fill publication route",
+      "address": "0x406716f6ca3578715622250c47efb88728b98beb",
+      "implementation": "0xbc854b1246f7a262d4ab6c35cc1778310d80095f",
+      "explorer": "https://explorer.horizen.io/address/0x406716f6ca3578715622250c47efb88728b98beb",
+      "deploymentTransaction": "0xbc6b6802931c598a167ce61dc74b7508ab4f9289f18ffa7503c1f82db2c4ee04",
+      "deploymentExplorer": "https://explorer.horizen.io/tx/0xbc6b6802931c598a167ce61dc74b7508ab4f9289f18ffa7503c1f82db2c4ee04",
+      "deploymentBlock": 24353088,
+      "source": "src/core/MatchSettlement.sol",
+      "build": "builds/match-settlement.json",
+      "explorerVerifiedSource": true,
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "e18daecc0a2059fec26f6b91cc72a60305b79548d10ccb986874bddbc67a94d0",
+      "implementationExplorer": "https://explorer.horizen.io/address/0xbc854b1246f7a262d4ab6c35cc1778310d80095f",
+      "implementationDeploymentTransaction": "0x139534873258b5a9b3c5c64fc7791b83c8fe4ab3edc5fde585577935235a235d",
+      "implementationDeploymentExplorer": "https://explorer.horizen.io/tx/0x139534873258b5a9b3c5c64fc7791b83c8fe4ab3edc5fde585577935235a235d",
+      "proxyBuild": "builds/match-settlement-proxy.json",
+      "configurationChecks": [
+        {
+          "address": "0x406716f6ca3578715622250c47efb88728b98beb",
+          "function": "registry()",
+          "calldata": "0x7b103999",
+          "rawResult": "0x0000000000000000000000009c67176dfc30ad540f3ecbad8083e4d9ac1885b1",
+          "value": "0x9c67176dfc30ad540f3ecbad8083e4d9ac1885b1"
+        },
+        {
+          "address": "0x406716f6ca3578715622250c47efb88728b98beb",
+          "function": "paused()",
+          "calldata": "0x5c975abb",
+          "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "value": false
+        }
+      ],
+      "usageStatus": "Indexed by production. Current private-fill commitments use LayrsTeeReceiptRegistry, not this contract."
     }
   ],
   "poolAsset": {
@@ -147,6 +410,47 @@
       "role": "DEFAULT_ADMIN_ROLE",
       "holder": "0x0e1306daec0c7c5711ef2eb98d1f6ba26aeea4ed",
       "confirmed": true
+    }
+  ],
+  "adapterRegistrationChecks": [
+    {
+      "address": "0x4b31ad17e964cb6da440b28405ab110eaf7b52a0",
+      "function": "isYieldAdapter(address)",
+      "calldata": "0x052534790000000000000000000000003d1c5104908bba3918ad53fad4d1da13fee25e2d",
+      "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "value": false
+    },
+    {
+      "address": "0xa5fffcc49326d0e4a99b2d076a5ce6f256a98a87",
+      "function": "isYieldAdapter(address)",
+      "calldata": "0x052534790000000000000000000000003d1c5104908bba3918ad53fad4d1da13fee25e2d",
+      "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "value": false
+    },
+    {
+      "address": "0xa4bf62c6cae3d3533d65b2d04e62cb6e757d57a7",
+      "function": "isYieldAdapter(address)",
+      "calldata": "0x052534790000000000000000000000003d1c5104908bba3918ad53fad4d1da13fee25e2d",
+      "rawResult": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "value": true
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Earlier ZEN vault used by ZenStakerAdapter",
+      "address": "0xa4bf62c6cae3d3533d65b2d04e62cb6e757d57a7",
+      "explorer": "https://explorer.horizen.io/address/0xa4bf62c6cae3d3533d65b2d04e62cb6e757d57a7",
+      "note": "Dependency reference only; not listed as an alternative to the latest ZEN vault."
+    },
+    {
+      "name": "ZEN token",
+      "address": "0x57da2d504bf8b83ef304759d9f2648522d7a9280",
+      "thirdPartyDependency": true
+    },
+    {
+      "name": "ZenStaker",
+      "address": "0x6bf7cf29a8bce11aa62cf593d165c244fa4d3e31",
+      "thirdPartyDependency": true
     }
   ]
 }

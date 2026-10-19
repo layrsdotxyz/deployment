@@ -1,7 +1,10 @@
-# Layrs · Horizen production contracts
+# Layrs · Horizen contract deployments
 
-Solidity source and deployment details for the contracts used by Layrs' current
-USDC trading system on **Horizen Mainnet (chain ID 26514; gas token ETH)**.
+Solidity source and deployment details for Layrs' trading, proof publication,
+ZEN custody and staking/strategy contracts on **Horizen Mainnet (chain ID 26514;
+gas token ETH)**. The latest applicable deployment is listed for each role and
+collateral. Deployment, production references and verified active use are not
+treated as interchangeable.
 
 ## Deployed contracts
 
@@ -13,16 +16,33 @@ USDC trading system on **Horizen Mainnet (chain ID 26514; gas token ETH)**.
 | AdminOracle | Traded-market outcome publication | [0x0237…0976](https://explorer.horizen.io/address/0x0237dfce14d1d66ca58948a6273e400cb3f00976) | [AdminOracle.sol](src/core/AdminOracle.sol) |
 | LayrsAdmin — markets | Administration of MarketRegistry and AdminOracle | [0x0e13…a4ed](https://explorer.horizen.io/address/0x0e1306daec0c7c5711ef2eb98d1f6ba26aeea4ed) | [LayrsAdmin.sol](src/LayrsAdmin.sol) |
 | LayrsAdmin — USDC pool | Administration of the USDC pool | [0x929c…2f11](https://explorer.horizen.io/address/0x929cc4d1d176e925b54b356c98ef9d376ec22f11) | [LayrsAdmin.sol](src/LayrsAdmin.sol) |
+| ZEN LayrsPool — trading | Collateral for ZEN-denominated prediction markets | [0x4b31…52a0](https://explorer.horizen.io/address/0x4b31ad17e964cb6da440b28405ab110eaf7b52a0) | [LayrsPool.sol](src/LayrsPool.sol) |
+| ZEN LPVault — liquidity/yield | Separate ERC-4626 vault for liquidity and yield strategies | [0xa5ff…8a87](https://explorer.horizen.io/address/0xa5fffcc49326d0e4a99b2d076a5ce6f256a98a87) | [LPVault.sol](src/vault/LPVault.sol) |
+| ZenStakerAdapter | ZEN staking for its registered vault | [0x3d1c…5e2d](https://explorer.horizen.io/address/0x3d1c5104908bba3918ad53fad4d1da13fee25e2d) | [ZenStakerAdapter.sol](src/adapters/ZenStakerAdapter.sol) |
+| HorizenZenStrategyReceiver | Horizen side of the cross-chain ZEN strategy | [0xd1a2…3ca9](https://explorer.horizen.io/address/0xd1a230267836eb3d6bf643c7c58457511e783ca9) | [HorizenZenStrategyReceiver.sol](src/strategies/HorizenZenStrategyReceiver.sol) |
+| ZenStakerFeeAdapter | Fee-aware staking adapter for the strategy receiver | [0xfec1…8fb3](https://explorer.horizen.io/address/0xfec1ab30940d64fa5efeab59e8a190d5088a8fb3) | [ZenStakerFeeAdapter.sol](src/adapters/ZenStakerFeeAdapter.sol) |
+| MatchSettlement | Indexed settlement contract; not the private-fill publication route | [0x4067…8beb](https://explorer.horizen.io/address/0x406716f6ca3578715622250c47efb88728b98beb) | [MatchSettlement.sol](src/core/MatchSettlement.sol) |
 
 The two administrators serve different current roles; they are not alternative
 versions of the same active endpoint. Each upgradeable endpoint's current
 implementation and clickable deployment transactions are listed in [DEPLOYMENT.md](DEPLOYMENT.md), with full machine-readable details in [deployment.json](deployment.json).
 
+### Two separate ZEN functions
+
+- **Prediction markets:** users deposit ZEN as trading collateral in the ZEN LayrsPool, analogous to the USDC LayrsPool.
+- **Staking/yield:** ZEN vaults and adapters manage liquidity and staking positions separately. A staking adapter need not be registered in the prediction-market trading pool.
+
+### Configuration evidence
+
+- `ZenStakerAdapter` is bound to and registered with the [earlier ZEN vault](https://explorer.horizen.io/address/0xa4bf62c6cae3d3533d65b2d04e62cb6e757d57a7). It is **not registered with the latest ZEN pool or vault above**. That earlier address is retained as a dependency reference, not as another latest deployment.
+- `ZenStakerFeeAdapter` is bound to the strategy receiver. Both adapters have an existing staking-deposit flag; that alone does not establish current funded activity.
+- The receiver's current Base strategy-manager reference and the vault/pool configuration are recorded at the verification block. This package does not certify a funded cross-chain strategy round trip.
+
 ## Source and verification
 
 - `src/`: exact Solidity source retrieved from the verified Horizen explorer records.
 - `lib/`: only imported third-party Solidity dependencies, preserving original source and SPDX notices.
-- `builds/`: exact compiler settings and source hashes for each deployed implementation or proxy.
+- `builds/`: exact compiler settings, source hashes and immutable constants for each deployed implementation or proxy. Any differing imported source required by a deployed build is retained under `builds/source-variants/`; it is not an additional claimed deployment.
 - `deployment.json`: full addresses, explorer links, creation transactions, current implementations, runtime hashes and the verification block.
 - `verify.py`: reproducible Solidity compilation and runtime-bytecode comparison.
 
@@ -35,11 +55,17 @@ python3 verify.py --solc /path/to/solc-0.8.25
 To also reread mainnet code and implementation pointers at the recorded block,
 set `HORIZEN_RPC_URL` in your environment before running the same command. No
 private key, signed transaction or gas is required. UUPS `__self` immutables are
-resolved to the deployed implementation address before comparison; metadata is
-not stripped from the runtime comparison.
+resolved to the deployed implementation address. Staking/strategy constructor
+immutables use values read from compiler-declared mainnet bytecode locations;
+public immutable getters are additionally checked. Metadata is not stripped from
+the runtime comparison. With RPC enabled, the recorded configuration and adapter
+registration reads are also reproduced at the pinned block.
 
 This is a focused source snapshot, not a new security audit. Proof publication
 does not by itself verify the off-chain enclave, user identity or trade execution.
 USDC and bridging providers are external dependencies, not Layrs contracts.
-Historical replacements, Base deployments, inactive yield contracts and the
-application backend are intentionally not included.
+Superseded replacement implementations, Base deployment listings and the application
+backend are intentionally not included. The receiver imports `IStargateOFT` from
+`BaseCrossChainZenStrategyManager.sol`; that file is retained only as a compilation
+dependency, not as a listed Base deployment. Imported interfaces and third-party
+libraries are compilation dependencies, not additional deployed Layrs contracts.
