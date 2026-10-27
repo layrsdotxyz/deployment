@@ -1,5 +1,9 @@
 # Horizen contract deployment details
 
+This file preserves the Horizen verification snapshot from 19 October 2026.
+It does not describe current production routing. See [Base deployment details](BASE_DEPLOYMENT.md)
+for the current USDC custody and publication contracts.
+
 Chain **26514** · native gas **ETH** · checked at block **29048950**, 2026-10-19T21:43:53.712689+00:00.
 
 ## Contracts

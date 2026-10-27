@@ -1,10 +1,41 @@
-# Layrs · Horizen contract deployments
+# Layrs · Contract deployments
 
-Solidity source and deployment details for Layrs' trading, proof publication,
+**Base Mainnet is the current production network for USDC custody and private-trade,
+market-registration and market-settlement publication.** Horizen deployment records
+are retained below as historical evidence, not as the current trading network.
+
+## Base Mainnet — current production
+
+Chain ID **8453** · Gas token **ETH** · [Deployment details](BASE_DEPLOYMENT.md) ·
+[Machine-readable manifest](base-deployment.json)
+
+| Contract | Purpose | Base address |
+|---|---|---|
+| USDC LayrsPool | Participant USDC deposits and withdrawals | [0xb076…a35f](https://basescan.org/address/0xb07627b0d646f5c82c8e30975a37650dc272a35f) |
+| LayrsTeeReceiptRegistry | Private-fill receipt commitments | [0x342d…af2f](https://basescan.org/address/0x342def5ae7f6b4d52a8d3c4a64085bb098a5af2f) |
+| MarketRegistry | Traded-market registration | [0xebde…3db7](https://basescan.org/address/0xebde1b32a86a5b2ff782e075b40e58f96b8b3db7) |
+| AdminOracle | Traded-market settlement outcomes | [0xbf82…18c7](https://basescan.org/address/0xbf820a025d5e4f887470c7c86f997e9899c718c7) |
+
+Base records include current implementation addresses and pinned on-chain bytecode
+checks. The ZEN trading pool and separate staking/yield vault are distinguished in
+the Base deployment details; their existence is not a claim of current campaign use.
+
+```sh
+python3 verify.py --network base --solc /path/to/solc-0.8.25
+```
+
+Set `BASE_RPC_URL` to independently recheck Base at the manifest's recorded block.
+See [verification scope and limits](BASE_DEPLOYMENT.md#verification) before interpreting
+source-build checks. No wallet, private key, signing or gas is needed.
+
+## Horizen Mainnet — historical deployment archive
+
+Historical Solidity source and deployment details for Layrs' trading, proof publication,
 ZEN custody and staking/strategy contracts on **Horizen Mainnet (chain ID 26514;
 gas token ETH)**. The latest applicable deployment is listed for each role and
 collateral. Deployment, production references and verified active use are not
-treated as interchangeable.
+treated as interchangeable. References to current use in this archive describe its
+19 October 2026 snapshot; they do not describe today's production routing.
 
 ## Deployed contracts
 
@@ -64,8 +95,8 @@ registration reads are also reproduced at the pinned block.
 This is a focused source snapshot, not a new security audit. Proof publication
 does not by itself verify the off-chain enclave, user identity or trade execution.
 USDC and bridging providers are external dependencies, not Layrs contracts.
-Superseded replacement implementations, Base deployment listings and the application
-backend are intentionally not included. The receiver imports `IStargateOFT` from
+Superseded replacement implementations and the application backend are intentionally
+not included. Base deployments are documented separately above. The receiver imports `IStargateOFT` from
 `BaseCrossChainZenStrategyManager.sol`; that file is retained only as a compilation
 dependency, not as a listed Base deployment. Imported interfaces and third-party
 libraries are compilation dependencies, not additional deployed Layrs contracts.

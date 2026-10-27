@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "chainId": 8453,
+  "network": "Base Mainnet",
+  "gasToken": "ETH",
+  "checkedBlock": 53163058,
+  "checkedBlockHash": "0x958fe75923e765baf03d6207845e1051cf16b8bf0ca719cd549ac7313b8e5a8e",
+  "blockTimestampUtc": "2026-10-27T15:37:43Z",
+  "contracts": [
+    {
+      "id": "usdc-pool",
+      "name": "LayrsPool",
+      "purpose": "Participant USDC deposits and withdrawals",
+      "source": "src/LayrsPool.sol",
+      "build": "builds/usdc-pool.json",
+      "address": "0xb07627b0d646f5c82c8e30975a37650dc272a35f",
+      "implementation": "0x1df899111e5da617b0c5fb351f538688fa35611d",
+      "explorer": "https://basescan.org/address/0xb07627b0d646f5c82c8e30975a37650dc272a35f",
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "61097aee511a99620e2827fea4746cf7cf567ba73d12ec0079bf562edf4d93d8",
+      "proxyBuild": "builds/usdc-pool-proxy.json"
+    },
+    {
+      "id": "private-fills",
+      "name": "LayrsTeeReceiptRegistry",
+      "purpose": "Private-fill receipt batch publication",
+      "source": "src/proofs/LayrsTeeReceiptRegistry.sol",
+      "build": "builds/private-fills.json",
+      "address": "0x342def5ae7f6b4d52a8d3c4a64085bb098a5af2f",
+      "implementation": null,
+      "explorer": "https://basescan.org/address/0x342def5ae7f6b4d52a8d3c4a64085bb098a5af2f",
+      "runtimeSha256": "ca5ed19e8c478a38da4c0657027e08cbb02ce568b3a0772e56b6f2b6077f6c1b",
+      "executableRuntimeSha256": "f246b77cc106044fae81b58d6a81f9c42f047f41688661dde62d61260e4ce410",
+      "verificationNote": "Published source compiles to identical executable runtime; Solidity metadata differs from this historical build configuration. The full deployed runtime hash is checked independently with RPC. Not an exact metadata-inclusive source-build match."
+    },
+    {
+      "id": "markets",
+      "name": "MarketRegistry",
+      "purpose": "Traded-market registration",
+      "source": "src/core/MarketRegistry.sol",
+      "build": "builds/markets.json",
+      "address": "0xebde1b32a86a5b2ff782e075b40e58f96b8b3db7",
+      "implementation": "0x48095c6d5c4385ec4e4b0d0006f15504d91e37dd",
+      "explorer": "https://basescan.org/address/0xebde1b32a86a5b2ff782e075b40e58f96b8b3db7",
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "45400d11d4d75f4fbda6ee2d65970927a66f7fa11d24d55456dc958ec25afa16",
+      "proxyBuild": "builds/markets-proxy.json"
+    },
+    {
+      "id": "settlement",
+      "name": "AdminOracle",
+      "purpose": "Traded-market outcome publication",
+      "source": "src/core/AdminOracle.sol",
+      "build": "builds/settlement.json",
+      "address": "0xbf820a025d5e4f887470c7c86f997e9899c718c7",
+      "implementation": "0x1bb19845d00eb16d7d9e7b27acebc1572f0bad5e",
+      "explorer": "https://basescan.org/address/0xbf820a025d5e4f887470c7c86f997e9899c718c7",
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "494d04d10baf0d7237b7673bead06ae83a56dfbec2b6b9674eccfc3dc0287a55",
+      "proxyBuild": "builds/settlement-proxy.json"
+    }
+  ],
+  "additionalDeployments": [
+    {
+      "id": "registration-attestation",
+      "address": "0x0d0716786a6c0abf3226820a23211892336cb94d",
+      "implementation": null,
+      "runtimeSha256": "4569a7cd60fc99055d3502da151914ff1e5d90b08abe4cae80fd497f0d988c4a",
+      "status": "Configured registration-attestation registry; not MarketRegistry; active usage not certified here"
+    },
+    {
+      "id": "zen-trading-pool",
+      "address": "0xd251fc236e31a122a41b58f56cce81dd7374edf8",
+      "implementation": "0xfaa9c7f2c6364ed4b8439f3250b11a450b556328",
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "667071f26babc5e98a522ee90b7cd1b1377e6ba949fd084a0c26af58cc1f4b8a",
+      "asset": "0xf43eb8de897fbc7f2502483b2bef7bb9ea179229",
+      "status": "Deployed ZEN prediction-market collateral pool; not current USDC campaign custody"
+    },
+    {
+      "id": "zen-staking-vault",
+      "address": "0x63f0bbf84f4c2bf79518bc62904ccb113dfeb91a",
+      "implementation": "0xc623bff1ac60d8f8c5942c057c9338ed04d04ad1",
+      "runtimeSha256": "635e96322d344f76bf824c881c9857cecbd9a1e152216dd062b25aed16b817ea",
+      "implementationRuntimeSha256": "36414080e6b320a28153025a70d2d1a86d5ef973c9eb31a27e67b3eee95ba909",
+      "asset": "0xf43eb8de897fbc7f2502483b2bef7bb9ea179229",
+      "status": "Separate ZEN staking/yield LPVault; funded strategy operation not certified here"
+    },
+    {
+      "id": "usdc-yield-vault",
+      "address": "0x5ef8283011e57a5d046511b48f3cce6e86e7aa3d",
+      "implementation": "0x28c721a4bb8abefc70ad5bf4dce4ed6d9a729e87",
+      "runtimeSha256": "082c937fa2ec1a91863760030f903627c6a64b67b546df0ac5fd184b3ae86cad",
+      "implementationRuntimeSha256": "36d2f639a4b1a36fd3b3c048cf15fc4216d113f86622e3d07422682c29e69b93",
+      "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "status": "Separate USDC yield LPVault; not the participant trading deposit pool"
+    }
+  ],
+  "verificationScope": "Four production custody/publication contracts have source-build checks, with explicit metadata limitation for private-fills. Additional deployments have pinned code, implementation and asset readbacks only; source-build equivalence and current funded operation are not claimed for them."
+}
